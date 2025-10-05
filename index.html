@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Mukoma | AURA Intelligence - GeoAI & AI Ecosystems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050505; }
+        .ai-gradient-text {
+            background: linear-gradient(90deg, #DC2626, #FBBF24, #4ADE80);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-fill-color: transparent;
+            animation: gradient-flow 10s ease infinite; background-size: 200% 200%;
+        }
+        @keyframes gradient-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .hero-bg {
+            background-image: radial-gradient(circle at top, rgba(153, 27, 27, 0.15) 0%, rgba(5,5,5,1) 60%), url('https://placehold.co/1920x1080/050505/FFFFFF/png?text=...');
+            background-size: cover; background-position: center;
+        }
+        .card-bg {
+            background-color: rgba(17, 17, 17, 0.6); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-primary { background: linear-gradient(90deg, #B91C1C, #EF4444); transition: all 0.3s ease-in-out; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(239, 68, 68, 0.6); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 1s ease-out forwards; }
+        .tech-icon { filter: grayscale(100%) brightness(150%); opacity: 0.6; transition: all 0.3s ease; }
+        .tech-icon:hover { filter: grayscale(0%) brightness(100%); opacity: 1; transform: scale(1.1); }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <header class="fixed w-full top-0 z-50 card-bg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold tracking-wider ai-gradient-text">AURA</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="hover:text-red-500 transition-colors">About Me</a>
+                <a href="#services" class="hover:text-red-500 transition-colors">Services</a>
+                <a href="#projects" class="hover:text-red-500 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-red-500 transition-colors">Contact</a>
+            </nav>
+            <button id="chatbot-toggle" class="bg-red-600 p-2 rounded-full hover:bg-red-500 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 18a6 6 0 1 1 6-6c0 2-3 3-3 5.5"/><path d="M12 6.5A2.5 2.5 0 1 1 9.5 9c0 1.5 2.5 2.5 2.5 5"/><path d="m9.5 14.5 2.5 2.5 2.5-2.5"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="min-h-screen flex items-center justify-center text-center hero-bg px-4 pt-20">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-7xl font-black mb-4">Your World, Automated.<br/> Your Data, <span class="ai-gradient-text">Intelligent.</span></h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-400 mb-8">I'm James Mukoma. I architect bespoke GeoAI ecosystems within your own Google environment, transforming your data into a secure, automated, and predictive powerhouse for sustainable impact.</p>
+                <a href="#about" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg">Learn More About Me</a>
+            </div>
+        </section>
+
+        <section id="about" class="py-24 bg-black px-4">
+            <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <img src="https://placehold.co/600x600/050505/DC2626/png?text=James+Mukoma" alt="James Mukoma" class="rounded-full">
+                </div>
+                <div class="fade-in" style="animation-delay: 0.2s;">
+                    <h2 class="text-4xl font-bold mb-4">GeoAI Consultant & <br/>Applied AI Specialist</h2>
+                    <p class="text-gray-400 mb-4">I leverage the entire Google Cloud and AI ecosystem to build secure, scalable solutions for environmental and humanitarian challenges in ASAL regions. My mission is to transform complex data into actionable intelligence, empowering development partners like the <span class="font-bold text-white">WFP, UNHCR, and USAID</span> to make data-driven decisions.</p>
+                    <p class="text-gray-400">From automating workflows to developing custom AI agents, my work is ethical, community-centric, and aligned with the Sustainable Development Goals.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-24 px-4">
+            <div class="container mx-auto">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-4xl font-bold mb-4">My <span class="ai-gradient-text">Services</span></h2>
+                    <p class="text-gray-400 mb-16">I provide end-to-end solutions, from strategy to implementation, to create your intelligent digital environment.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-red-500 mb-2">AURA Ecosystem Setup</h3><p>Full implementation of the automated data ecosystem for organizations and individuals.</p></div>
+                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-yellow-500 mb-2">GeoAI Impact Analysis</h3><p>Bespoke geospatial analysis for flood risk, rangeland health, refugee integration, and more.</p></div>
+                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-green-500 mb-2">Custom AI Agent Development</h3><p>Building specialized Gemini-powered agents for tasks like legal research or smart home automation.</p></div>
+                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-blue-500 mb-2">Responsible AI & Ethics</h3><p>Guiding organizations in the ethical development and deployment of AI solutions.</p></div>
+                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-indigo-500 mb-2">AI Hackathons & Training</h3><p>Organizing Zindi-style data challenges and providing corporate training via Google Classroom.</p></div>
+                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-purple-500 mb-2">Smart IoT & CCTV Integration</h3><p>Connecting your physical world to your digital ecosystem for real-time alerts and monitoring.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-24 bg-black px-4">
+            <div class="container mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-4xl font-bold mb-4">Ongoing Projects in <span class="ai-gradient-text">Garissa County</span></h2>
+                    <p class="text-gray-400">Applying the AURA ecosystem to solve critical, real-world challenges. These projects demonstrate the power of integrated GeoAI in action.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="card-bg p-6 rounded-lg space-y-3">
+                        <img src="https://placehold.co/600x400/111111/DC2626/png?text=Flood+EWS" class="rounded-lg w-full h-40 object-cover">
+                        <h4 class="text-xl font-bold text-red-500 pt-2">Project Sentinel: Flood & Drought EWS</h4>
+                        <p class="text-gray-400 text-sm">Predictive AI using Sentinel data to create an early warning system for communities along the Tana River.</p>
+                        <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, Gemini, Cloud Functions, Google Colab</p>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="card-bg p-6 rounded-lg space-y-3">
+                        <img src="https://placehold.co/600x400/111111/FBBF24/png?text=Livestock+AI" class="rounded-lg w-full h-40 object-cover">
+                        <h4 class="text-xl font-bold text-yellow-500 pt-2">Project Verdant: Rangeland & Livestock AI</h4>
+                        <p class="text-gray-400 text-sm">Mapping rangeland health and developing an AI model to identify cattle by muzzle prints for enhanced management.</p>
+                        <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, Vertex AI, Google Cloud Storage</p>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="card-bg p-6 rounded-lg space-y-3">
+                        <img src="https://placehold.co/600x400/111111/4ADE80/png?text=Invasive+Species" class="rounded-lg w-full h-40 object-cover">
+                        <h4 class="text-xl font-bold text-green-500 pt-2">Project TerraForm: Invasive Species AI</h4>
+                        <p class="text-gray-400 text-sm">A GeoAI system to detect and monitor the invasive Mathenge plant and analyze its impact on water aquifers.</p>
+                        <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, BigQuery, Looker Studio</p>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="card-bg p-6 rounded-lg space-y-3">
+                        <img src="https://placehold.co/600x400/111111/3B82F6/png?text=Crop+Yield+AI" class="rounded-lg w-full h-40 object-cover">
+                        <h4 class="text-xl font-bold text-blue-500 pt-2">Project Harvest: AI for Soil & Crop Yield</h4>
+                        <p class="text-gray-400 text-sm">An attention-based CNN model that predicts soil nutrient gaps and crop productivity for farmers.</p>
+                        <p class="text-xs text-gray-500"><strong>Tools:</strong> TensorFlow, Vertex AI, Colab</p>
+                    </div>
+                    <!-- Project 5 -->
+                    <div class="card-bg p-6 rounded-lg space-y-3">
+                        <img src="https://placehold.co/600x400/111111/8B5CF6/png?text=Refugee+Integration" class="rounded-lg w-full h-40 object-cover">
+                        <h4 class="text-xl font-bold text-indigo-500 pt-2">Project Shirika: Refugee Integration AI</h4>
+                        <p class="text-gray-400 text-sm">Analyzing the Shirika plan with GeoAI to model resource allocation and social integration patterns for refugees.</p>
+                        <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, BigQuery, Gemini, Looker Studio</p>
+                    </div>
+                    <!-- Project 6 -->
+                    <div class="card-bg p-6 rounded-lg space-y-3">
+                        <img src="https://placehold.co/600x400/111111/EC4899/png?text=Living+Atlas" class="rounded-lg w-full h-40 object-cover">
+                        <h4 class="text-xl font-bold text-purple-500 pt-2">Project Atlas: Garissa Living Atlas</h4>
+                        <p class="text-gray-400 text-sm">Mapping Garissa County's living atlas layers to monitor rangeland degradation and ecosystem health over time.</p>
+                        <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, Google Workspace, Looker Studio</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-24 text-center px-4">
+             <div class="container mx-auto max-w-3xl">
+                <h2 class="text-4xl font-bold mb-4">Let's Build Your <span class="ai-gradient-text">Intelligent Future</span></h2>
+                <p class="text-gray-400 mb-8">Whether you're a development partner needing to scale impact, a company looking to automate, or an individual wanting to simplify life, I can architect an AURA ecosystem for you.</p>
+                <div class="flex justify-center gap-4">
+                    <a href="mailto:jmsmuigai@gmail.com" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg">Email Me: jmsmuigai@gmail.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+             <div class="flex justify-center gap-6 mb-4">
+                <a href="https://www.linkedin.com/in/james-mukoma-86534438/" target="_blank" class="hover:text-white">LinkedIn</a>
+                <a href="https://github.com/jmsmuigai" target="_blank" class="hover:text-white">GitHub</a>
+             </div>
+            <p>&copy; 2025 AURA Intelligence by James Mukoma. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="fixed bottom-5 right-5 z-50 w-full max-w-md hidden">
+        <div class="card-bg rounded-xl shadow-2xl">
+            <div class="p-4 border-b border-gray-700 flex justify-between items-center"><h3 class="text-lg font-bold ai-gradient-text">AURA Assistant</h3><button id="close-chatbot" class="text-gray-400 hover:text-white">&times;</button></div>
+            <div id="chatbot-body" class="p-4 h-96 overflow-y-auto">
+                <div class="text-gray-400 text-sm p-3 rounded-lg bg-gray-800 w-fit">Hello! I am the AURA Assistant, powered by Gemini. Ask me about James's GeoAI services. (Habari! Mimi ni AURA Assistant).</div>
+            </div>
+            <div class="p-4 border-t border-gray-700">
+                <div class="flex gap-2"><input type="text" id="chatbot-input" class="flex-grow bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Ask me anything..."><button id="chatbot-send" class="btn-primary text-white font-bold px-4 py-2 rounded-lg">Send</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        // --- Chatbot Logic ---
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const closeChatbot = document.getElementById('close-chatbot');
+        const chatbotSend = document.getElementById('chatbot-send');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotBody = document.getElementById('chatbot-body');
+
+        chatbotToggle.addEventListener('click', () => chatbotContainer.classList.toggle('hidden'));
+        closeChatbot.addEventListener('click', () => chatbotContainer.classList.add('hidden'));
+        chatbotSend.addEventListener('click', handleUserMessage);
+        chatbotInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleUserMessage(); });
+
+        function handleUserMessage() {
+            const userMessage = chatbotInput.value.trim(); if (!userMessage) return;
+            appendMessage(userMessage, 'user'); chatbotInput.value = ''; getGeminiResponse(userMessage);
+        }
+        function appendMessage(message, sender) {
+            const messageDiv = document.createElement('div'); messageDiv.textContent = message;
+            messageDiv.className = sender === 'user' ? 'bg-red-600 text-white p-3 rounded-lg w-fit ml-auto mt-2' : 'text-gray-400 text-sm p-3 rounded-lg bg-gray-800 w-fit mt-2';
+            chatbotBody.appendChild(messageDiv); chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }
+
+        async function getGeminiResponse(userQuery) {
+            appendMessage('Thinking...', 'bot');
+            const systemPrompt = `You are AURA, an expert AI assistant for James Mukoma, a GeoAI specialist. Your goal is to help potential clients (like WFP, UNHCR, USAID) understand his work. 
+            - His consultancy is AURA Intelligence.
+            - He specializes in building automated AI ecosystems using Google Cloud, GEE, and Gemini.
+            - His key projects in Garissa County include: Project Sentinel (Flood/Drought EWS), Project Verdant (Rangelands/Livestock AI), Project TerraForm (Invasive Species), Project Harvest (Soil/Crop AI), Project Shirika (Refugee Integration), and Project Atlas (Living Atlas).
+            - He offers services for organizations and individuals.
+            - Be helpful, professional, and concise. You can answer in English or Swahili. Keep responses under 80 words.`;
+            
+            const apiKey = "AIzaSyDDZludrLe0owCB3jFvPWSp8b3ZBx5hBmQ"; // Leave blank
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            const payload = { contents: [{ parts: [{ text: userQuery }] }], systemInstruction: { parts: [{ text: systemPrompt }] }, };
+
+            try {
+                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!response.ok) { throw new Error(`API error: ${response.statusText}`); }
+                const result = await response.json();
+                const botMessage = result.candidates?.[0]?.content?.parts?.[0]?.text || "I'm having trouble connecting right now.";
+                chatbotBody.removeChild(chatbotBody.lastChild); 
+                appendMessage(botMessage, 'bot');
+            } catch (error) {
+                console.error("Gemini API call failed:", error);
+                chatbotBody.removeChild(chatbotBody.lastChild);
+                appendMessage("Sorry, I encountered an error. Please check the console for details.", 'bot');
+            }
+        }
+    </script>
+</body>
+</html>

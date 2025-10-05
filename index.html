@@ -8,31 +8,94 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #050505; }
+        :root {
+            --bg-color: #020202;
+            --primary-glow: #B91C1C;
+            --secondary-glow: #4A044E;
+            --tertiary-glow: #065F46;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: #E5E7EB;
+            overflow-x: hidden;
+        }
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            overflow: hidden;
+        }
+        .hanging-applet {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.5;
+            animation: float 20s infinite ease-in-out;
+        }
+        .applet-1 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            top: 10%; left: 5%;
+            animation-duration: 25s;
+        }
+        .applet-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
+            top: 50%; left: 80%;
+            animation-duration: 30s;
+            animation-delay: -5s;
+        }
+        .applet-3 {
+            width: 250px; height: 250px;
+            background: radial-gradient(circle, var(--tertiary-glow) 0%, transparent 70%);
+            top: 80%; left: 20%;
+            animation-duration: 20s;
+            animation-delay: -10s;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            50% { transform: translateY(-40px) translateX(30px) rotate(180deg); }
+            100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+        }
+
         .ai-gradient-text {
-            background: linear-gradient(90deg, #DC2626, #FBBF24, #4ADE80);
+            background: linear-gradient(90deg, #F87171, #FBBF24, #34D399);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text; text-fill-color: transparent;
-            animation: gradient-flow 10s ease infinite; background-size: 200% 200%;
+            animation: gradient-flow 8s ease infinite; background-size: 200% 200%;
         }
         @keyframes gradient-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .hero-bg {
-            background-image: radial-gradient(circle at top, rgba(153, 27, 27, 0.15) 0%, rgba(5,5,5,1) 60%), url('https://placehold.co/1920x1080/050505/FFFFFF/png?text=...');
-            background-size: cover; background-position: center;
-        }
+        
         .card-bg {
-            background-color: rgba(17, 17, 17, 0.6); backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
         }
-        .btn-primary { background: linear-gradient(90deg, #B91C1C, #EF4444); transition: all 0.3s ease-in-out; }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(239, 68, 68, 0.6); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-primary {
+            background: linear-gradient(90deg, #B91C1C, #EF4444);
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.7);
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .fade-in { animation: fadeIn 1s ease-out forwards; }
-        .tech-icon { filter: grayscale(100%) brightness(150%); opacity: 0.6; transition: all 0.3s ease; }
-        .tech-icon:hover { filter: grayscale(0%) brightness(100%); opacity: 1; transform: scale(1.1); }
     </style>
 </head>
 <body class="text-gray-200">
+    <div class="background-container">
+        <div class="hanging-applet applet-1"></div>
+        <div class="hanging-applet applet-2"></div>
+        <div class="hanging-applet applet-3"></div>
+    </div>
 
     <header class="fixed w-full top-0 z-50 card-bg">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -50,7 +113,7 @@
     </header>
 
     <main>
-        <section id="home" class="min-h-screen flex items-center justify-center text-center hero-bg px-4 pt-20">
+        <section id="home" class="min-h-screen flex items-center justify-center text-center px-4 pt-20">
             <div class="fade-in">
                 <h1 class="text-5xl md:text-7xl font-black mb-4">Your World, Automated.<br/> Your Data, <span class="ai-gradient-text">Intelligent.</span></h1>
                 <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-400 mb-8">I'm James Mukoma. I architect bespoke GeoAI ecosystems within your own Google environment, transforming your data into a secure, automated, and predictive powerhouse for sustainable impact.</p>

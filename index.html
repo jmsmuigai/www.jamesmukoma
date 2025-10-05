@@ -7,95 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <style>
-        :root {
-            --bg-color: #020202;
-            --primary-glow: #B91C1C;
-            --secondary-glow: #4A044E;
-            --tertiary-glow: #065F46;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: #E5E7EB;
-            overflow-x: hidden;
-        }
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -10;
-            overflow: hidden;
-        }
-        .hanging-applet {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.5;
-            animation: float 20s infinite ease-in-out;
-        }
-        .applet-1 {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-            top: 10%; left: 5%;
-            animation-duration: 25s;
-        }
-        .applet-2 {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
-            top: 50%; left: 80%;
-            animation-duration: 30s;
-            animation-delay: -5s;
-        }
-        .applet-3 {
-            width: 250px; height: 250px;
-            background: radial-gradient(circle, var(--tertiary-glow) 0%, transparent 70%);
-            top: 80%; left: 20%;
-            animation-duration: 20s;
-            animation-delay: -10s;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-            50% { transform: translateY(-40px) translateX(30px) rotate(180deg); }
-            100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
-        }
-
-        .ai-gradient-text {
-            background: linear-gradient(90deg, #F87171, #FBBF24, #34D399);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; text-fill-color: transparent;
-            animation: gradient-flow 8s ease infinite; background-size: 200% 200%;
-        }
-        @keyframes gradient-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        
-        .card-bg {
-            background-color: rgba(10, 10, 10, 0.5);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 40px rgba(0,0,0,0.5);
-        }
-        .btn-primary {
-            background: linear-gradient(90deg, #B91C1C, #EF4444);
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
-        }
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(239, 68, 68, 0.7);
-        }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in { animation: fadeIn 1s ease-out forwards; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body class="text-gray-200">
-    <div class="background-container">
-        <div class="hanging-applet applet-1"></div>
-        <div class="hanging-applet applet-2"></div>
-        <div class="hanging-applet applet-3"></div>
-    </div>
 
     <header class="fixed w-full top-0 z-50 card-bg">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -103,21 +18,39 @@
             <nav class="hidden md:flex space-x-8 items-center">
                 <a href="#about" class="hover:text-red-500 transition-colors">About Me</a>
                 <a href="#services" class="hover:text-red-500 transition-colors">Services</a>
+                <a href="#aura-framework" class="hover:text-red-500 transition-colors">AURA Framework</a>
+                <a href="#tech-stack" class="hover:text-red-500 transition-colors">Tech Stack</a>
                 <a href="#projects" class="hover:text-red-500 transition-colors">Projects</a>
                 <a href="#contact" class="hover:text-red-500 transition-colors">Contact</a>
             </nav>
-            <button id="chatbot-toggle" class="bg-red-600 p-2 rounded-full hover:bg-red-500 transition-colors">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 18a6 6 0 1 1 6-6c0 2-3 3-3 5.5"/><path d="M12 6.5A2.5 2.5 0 1 1 9.5 9c0 1.5 2.5 2.5 2.5 5"/><path d="m9.5 14.5 2.5 2.5 2.5-2.5"/></svg>
-            </button>
+            <div class="flex items-center">
+                <button id="theme-switcher" class="bg-gray-800 p-2 rounded-full hover:bg-gray-700 transition-colors mr-4">
+                    <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </button>
+                <button id="chatbot-toggle" class="bg-red-600 p-2 rounded-full hover:bg-red-500 transition-colors">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 18a6 6 0 1 1 6-6c0 2-3 3-3 5.5"/><path d="M12 6.5A2.5 2.5 0 1 1 9.5 9c0 1.5 2.5 2.5 2.5 5"/><path d="m9.5 14.5 2.5 2.5 2.5-2.5"/></svg>
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
-        <section id="home" class="min-h-screen flex items-center justify-center text-center px-4 pt-20">
+        <section id="home" class="min-h-screen flex items-center justify-center text-center hero-bg px-4 pt-20 relative">
             <div class="fade-in">
-                <h1 class="text-5xl md:text-7xl font-black mb-4">Your World, Automated.<br/> Your Data, <span class="ai-gradient-text">Intelligent.</span></h1>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-400 mb-8">I'm James Mukoma. I architect bespoke GeoAI ecosystems within your own Google environment, transforming your data into a secure, automated, and predictive powerhouse for sustainable impact.</p>
-                <a href="#about" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg">Learn More About Me</a>
+                <h1 class="text-5xl md:text-7xl font-black mb-4">Your World, Reimagined.<br/> Your Data, <span class="ai-gradient-text">Unleashed.</span></h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-400 mb-8">I'm James Mukoma, a GeoAI architect. I don't just build systems; I forge intelligent ecosystems within your Google environment, transforming your data from a dormant asset into a predictive, automated force for sustainable impact. Welcome to AURA Intelligence.</p>
+                <a href="#about" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg">Explore the AURA Ecosystem</a>
+            </div>
+            <div class="marquee">
+              <div class="marquee-content">
+                <span>GEOAI</span>
+                <span>AURA INTELLIGENCE</span>
+                <span>SUSTAINABLE IMPACT</span>
+                <span>AUTOMATED ECOSYSTEMS</span>
+                <span>PREDICTIVE POWERHOUSE</span>
+              </div>
             </div>
         </section>
 
@@ -127,9 +60,8 @@
                     <img src="https://placehold.co/600x600/050505/DC2626/png?text=James+Mukoma" alt="James Mukoma" class="rounded-full">
                 </div>
                 <div class="fade-in" style="animation-delay: 0.2s;">
-                    <h2 class="text-4xl font-bold mb-4">GeoAI Consultant & <br/>Applied AI Specialist</h2>
-                    <p class="text-gray-400 mb-4">I leverage the entire Google Cloud and AI ecosystem to build secure, scalable solutions for environmental and humanitarian challenges in ASAL regions. My mission is to transform complex data into actionable intelligence, empowering development partners like the <span class="font-bold text-white">WFP, UNHCR, and USAID</span> to make data-driven decisions.</p>
-                    <p class="text-gray-400">From automating workflows to developing custom AI agents, my work is ethical, community-centric, and aligned with the Sustainable Development Goals.</p>
+                    <h2 class="text-4xl font-bold mb-4">The Architect Behind the <span class="ai-gradient-text">AURA</span></h2>
+                    <p class="text-gray-400 mb-4">I'm not just a consultant; I'm a digital cartographer and an AI whisperer. I navigate the complex landscapes of the Google Cloud and AI ecosystem to chart a course for your success. My work is more than just code; it's about building bridges between data and decisions, between technology and humanity. I'm passionate about crafting ethical, community-centric solutions that empower organizations like the <span class="font-bold text-white">WFP, UNHCR, and USAID</span> to not just react to challenges, but to anticipate and shape a more sustainable future. When I'm not architecting intelligent ecosystems, you can find me exploring the real world, probably trying to geolocate the best coffee.</p>
                 </div>
             </div>
         </section>
@@ -137,8 +69,8 @@
         <section id="services" class="py-24 px-4">
             <div class="container mx-auto">
                 <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-4xl font-bold mb-4">My <span class="ai-gradient-text">Services</span></h2>
-                    <p class="text-gray-400 mb-16">I provide end-to-end solutions, from strategy to implementation, to create your intelligent digital environment.</p>
+                    <h2 class="text-4xl font-bold mb-4">My Services: Your Vision, <span class="ai-gradient-text">Amplified by AI</span></h2>
+                    <p class="text-gray-400 mb-16">I offer a suite of services designed to transform your relationship with data. I don't just provide solutions; I deliver a strategic advantage, tailored to your unique needs.</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-red-500 mb-2">AURA Ecosystem Setup</h3><p>Full implementation of the automated data ecosystem for organizations and individuals.</p></div>
@@ -151,6 +83,63 @@
             </div>
         </section>
 
+        <section id="aura-framework" class="py-24 px-4">
+            <div class="container mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-4xl font-bold mb-4">The <span class="ai-gradient-text">AURA</span> Framework</h2>
+                    <p class="text-gray-400">A visual representation of the AURA ecosystem workflow.</p>
+                </div>
+                <div class="flex justify-center">
+                    <div class="mermaid">
+                        graph TD
+                            A[Data Ingestion] --> B{Data Processing};
+                            B --> C[Data Storage];
+                            C --> D{Data Analysis};
+                            D --> E[Data Visualization];
+                            E --> F[Decision Making];
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech-stack" class="py-24 bg-black px-4">
+            <div class="container mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-4xl font-bold mb-4">My <span class="ai-gradient-text">Tech Stack</span></h2>
+                    <p class="text-gray-400">I use a wide range of technologies to build my solutions.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
+                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=GEE" alt="Google Earth Engine" class="tech-icon">
+                    </div>
+                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
+                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Google+Cloud" alt="Google Cloud" class="tech-icon">
+                    </div>
+                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
+                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Jules" alt="Jules" class="tech-icon">
+                    </div>
+                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
+                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=VS+Code" alt="VS Code" class="tech-icon">
+                    </div>
+                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
+                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Java" alt="Java" class="tech-icon">
+                    </div>
+                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
+                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Flutter" alt="Flutter" class="tech-icon">
+                    </div>
+                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
+                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Python" alt="Python" class="tech-icon">
+                    </div>
+                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
+                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Colab" alt="Colab" class="tech-icon">
+                    </div>
+                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
+                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Looker+Studio" alt="Looker Studio" class="tech-icon">
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="projects" class="py-24 bg-black px-4">
             <div class="container mx-auto">
                 <div class="text-center max-w-3xl mx-auto mb-16">
@@ -159,47 +148,47 @@
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Project 1 -->
-                    <div class="card-bg p-6 rounded-lg space-y-3">
+                    <a href="project-sentinel.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
                         <img src="https://placehold.co/600x400/111111/DC2626/png?text=Flood+EWS" class="rounded-lg w-full h-40 object-cover">
                         <h4 class="text-xl font-bold text-red-500 pt-2">Project Sentinel: Flood & Drought EWS</h4>
                         <p class="text-gray-400 text-sm">Predictive AI using Sentinel data to create an early warning system for communities along the Tana River.</p>
                         <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, Gemini, Cloud Functions, Google Colab</p>
-                    </div>
+                    </a>
                     <!-- Project 2 -->
-                    <div class="card-bg p-6 rounded-lg space-y-3">
+                    <a href="project-verdant.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
                         <img src="https://placehold.co/600x400/111111/FBBF24/png?text=Livestock+AI" class="rounded-lg w-full h-40 object-cover">
                         <h4 class="text-xl font-bold text-yellow-500 pt-2">Project Verdant: Rangeland & Livestock AI</h4>
                         <p class="text-gray-400 text-sm">Mapping rangeland health and developing an AI model to identify cattle by muzzle prints for enhanced management.</p>
                         <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, Vertex AI, Google Cloud Storage</p>
-                    </div>
+                    </a>
                     <!-- Project 3 -->
-                    <div class="card-bg p-6 rounded-lg space-y-3">
+                    <a href="project-terraform.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
                         <img src="https://placehold.co/600x400/111111/4ADE80/png?text=Invasive+Species" class="rounded-lg w-full h-40 object-cover">
                         <h4 class="text-xl font-bold text-green-500 pt-2">Project TerraForm: Invasive Species AI</h4>
                         <p class="text-gray-400 text-sm">A GeoAI system to detect and monitor the invasive Mathenge plant and analyze its impact on water aquifers.</p>
                         <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, BigQuery, Looker Studio</p>
-                    </div>
+                    </a>
                     <!-- Project 4 -->
-                    <div class="card-bg p-6 rounded-lg space-y-3">
+                    <a href="project-harvest.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
                         <img src="https://placehold.co/600x400/111111/3B82F6/png?text=Crop+Yield+AI" class="rounded-lg w-full h-40 object-cover">
                         <h4 class="text-xl font-bold text-blue-500 pt-2">Project Harvest: AI for Soil & Crop Yield</h4>
                         <p class="text-gray-400 text-sm">An attention-based CNN model that predicts soil nutrient gaps and crop productivity for farmers.</p>
                         <p class="text-xs text-gray-500"><strong>Tools:</strong> TensorFlow, Vertex AI, Colab</p>
-                    </div>
+                    </a>
                     <!-- Project 5 -->
-                    <div class="card-bg p-6 rounded-lg space-y-3">
+                    <a href="project-shirika.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
                         <img src="https://placehold.co/600x400/111111/8B5CF6/png?text=Refugee+Integration" class="rounded-lg w-full h-40 object-cover">
                         <h4 class="text-xl font-bold text-indigo-500 pt-2">Project Shirika: Refugee Integration AI</h4>
                         <p class="text-gray-400 text-sm">Analyzing the Shirika plan with GeoAI to model resource allocation and social integration patterns for refugees.</p>
                         <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, BigQuery, Gemini, Looker Studio</p>
-                    </div>
+                    </a>
                     <!-- Project 6 -->
-                    <div class="card-bg p-6 rounded-lg space-y-3">
+                    <a href="project-atlas.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
                         <img src="https://placehold.co/600x400/111111/EC4899/png?text=Living+Atlas" class="rounded-lg w-full h-40 object-cover">
                         <h4 class="text-xl font-bold text-purple-500 pt-2">Project Atlas: Garissa Living Atlas</h4>
                         <p class="text-gray-400 text-sm">Mapping Garissa County's living atlas layers to monitor rangeland degradation and ecosystem health over time.</p>
                         <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, Google Workspace, Looker Studio</p>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -239,56 +228,9 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="scripts.js"></script>
     <script>
-        // --- Chatbot Logic ---
-        const chatbotToggle = document.getElementById('chatbot-toggle');
-        const chatbotContainer = document.getElementById('chatbot-container');
-        const closeChatbot = document.getElementById('close-chatbot');
-        const chatbotSend = document.getElementById('chatbot-send');
-        const chatbotInput = document.getElementById('chatbot-input');
-        const chatbotBody = document.getElementById('chatbot-body');
-
-        chatbotToggle.addEventListener('click', () => chatbotContainer.classList.toggle('hidden'));
-        closeChatbot.addEventListener('click', () => chatbotContainer.classList.add('hidden'));
-        chatbotSend.addEventListener('click', handleUserMessage);
-        chatbotInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleUserMessage(); });
-
-        function handleUserMessage() {
-            const userMessage = chatbotInput.value.trim(); if (!userMessage) return;
-            appendMessage(userMessage, 'user'); chatbotInput.value = ''; getGeminiResponse(userMessage);
-        }
-        function appendMessage(message, sender) {
-            const messageDiv = document.createElement('div'); messageDiv.textContent = message;
-            messageDiv.className = sender === 'user' ? 'bg-red-600 text-white p-3 rounded-lg w-fit ml-auto mt-2' : 'text-gray-400 text-sm p-3 rounded-lg bg-gray-800 w-fit mt-2';
-            chatbotBody.appendChild(messageDiv); chatbotBody.scrollTop = chatbotBody.scrollHeight;
-        }
-
-        async function getGeminiResponse(userQuery) {
-            appendMessage('Thinking...', 'bot');
-            const systemPrompt = `You are AURA, an expert AI assistant for James Mukoma, a GeoAI specialist. Your goal is to help potential clients (like WFP, UNHCR, USAID) understand his work. 
-            - His consultancy is AURA Intelligence.
-            - He specializes in building automated AI ecosystems using Google Cloud, GEE, and Gemini.
-            - His key projects in Garissa County include: Project Sentinel (Flood/Drought EWS), Project Verdant (Rangelands/Livestock AI), Project TerraForm (Invasive Species), Project Harvest (Soil/Crop AI), Project Shirika (Refugee Integration), and Project Atlas (Living Atlas).
-            - He offers services for organizations and individuals.
-            - Be helpful, professional, and concise. You can answer in English or Swahili. Keep responses under 80 words.`;
-            
-            const apiKey = "AIzaSyDDZludrLe0owCB3jFvPWSp8b3ZBx5hBmQ"; // Leave blank
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-            const payload = { contents: [{ parts: [{ text: userQuery }] }], systemInstruction: { parts: [{ text: systemPrompt }] }, };
-
-            try {
-                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                if (!response.ok) { throw new Error(`API error: ${response.statusText}`); }
-                const result = await response.json();
-                const botMessage = result.candidates?.[0]?.content?.parts?.[0]?.text || "I'm having trouble connecting right now.";
-                chatbotBody.removeChild(chatbotBody.lastChild); 
-                appendMessage(botMessage, 'bot');
-            } catch (error) {
-                console.error("Gemini API call failed:", error);
-                chatbotBody.removeChild(chatbotBody.lastChild);
-                appendMessage("Sorry, I encountered an error. Please check the console for details.", 'bot');
-            }
-        }
+      mermaid.initialize({ startOnLoad: true });
     </script>
 </body>
 </html>

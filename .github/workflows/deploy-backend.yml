@@ -1,0 +1,64 @@
+name: Deploy Backend to Google Cloud Run
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'backend/**' ]
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  SERVICE: aura-api
+  REGION: us-central1
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Google Auth
+      id: auth
+      uses: 'google-github-actions/auth@v2'
+      with:
+        credentials_json: '${{ secrets.GCP_SA_KEY }}'
+        
+    - name: Set up Cloud SDK
+      uses: 'google-github-actions/setup-gcloud@v2'
+      
+    - name: Configure Docker
+      run: gcloud auth configure-docker
+      
+    - name: Build
+      run: |
+        cd backend
+        docker build -t gcr.io/$PROJECT_ID/$SERVICE:$GITHUB_SHA .
+        docker push gcr.io/$PROJECT_ID/$SERVICE:$GITHUB_SHA
+        
+    - name: Deploy
+      run: |
+        gcloud run deploy $SERVICE \
+          --image gcr.io/$PROJECT_ID/$SERVICE:$GITHUB_SHA \
+          --platform managed \
+          --region $REGION \
+          --allow-unauthenticated \
+          --port 5000 \
+          --memory 2Gi \
+          --cpu 2 \
+          --max-instances 10 \
+          --set-env-vars \
+            GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }},\
+            MPESA_CONSUMER_KEY=${{ secrets.MPESA_CONSUMER_KEY }},\
+            MPESA_CONSUMER_SECRET=${{ secrets.MPESA_CONSUMER_SECRET }},\
+            MPESA_BUSINESS_SHORT_CODE=${{ secrets.MPESA_BUSINESS_SHORT_CODE }},\
+            MPESA_PASSKEY=${{ secrets.MPESA_PASSKEY }},\
+            SECRET_KEY=${{ secrets.SECRET_KEY }}
+            
+    - name: Show Output
+      run: |
+        gcloud run services describe $SERVICE \
+          --region=$REGION \
+          --format='value(status.url)'

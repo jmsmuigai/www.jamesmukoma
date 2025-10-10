@@ -29,10 +29,8 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
-          maps: ['mapbox-gl', 'react-map-gl'],
-          charts: ['chart.js', 'react-chartjs-2'],
-          ai: ['@google/generative-ai', 'firebase']
+          animations: ['framer-motion'],
+          ui: ['lucide-react', 'clsx', 'tailwind-merge']
         }
       }
     }

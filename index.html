@@ -1,236 +1,254 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>James Mukoma | AURA Intelligence - GeoAI & AI Ecosystems</title>
+    <title>AURA Intelligence | James Mukoma - GeoAI & AI Ecosystems</title>
+    <meta name="description" content="AURA Intelligence - James Mukoma's state-of-the-art AI-powered portfolio showcasing GeoAI expertise and Neo-African Futurism design">
+    
+    <!-- Tailwind CSS CDN for immediate styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-blue': '#0A192F',
+                        'dark-gray': '#111111',
+                        'accent-orange': '#FF6B00',
+                        'accent-teal': '#00F5D4',
+                        'light-gray': '#A0AEC0',
+                        'text-light': '#E2E8F0',
+                    },
+                    animation: {
+                        'gradient-flow': 'gradient-flow 10s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        'gradient-flow': {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .ai-gradient-text {
+            background: linear-gradient(90deg, #FF6B00, #00F5D4, #FF6B00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-flow 10s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, #FF6B00, #00F5D4);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .particle:nth-child(1) { width: 10px; height: 10px; top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 15px; height: 15px; top: 60%; left: 80%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 8px; height: 8px; top: 80%; left: 20%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 12px; height: 12px; top: 30%; left: 70%; animation-delay: 1s; }
+        .particle:nth-child(5) { width: 6px; height: 6px; top: 70%; left: 50%; animation-delay: 3s; }
+        
+        .glow {
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.5), 0 0 40px rgba(0, 245, 212, 0.3);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #FF6B00, #00F5D4);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.4);
+        }
+    </style>
 </head>
-<body class="text-gray-200">
+<body class="bg-deep-blue text-text-light font-sans antialiased min-h-screen">
+    <!-- Animated Background Particles -->
+    <div class="fixed inset-0 z-0 overflow-hidden">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        
+        <!-- Gradient Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-deep-blue via-dark-gray to-deep-blue"></div>
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-accent-orange/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute top-3/4 right-1/4 w-96 h-96 bg-accent-teal/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    </div>
 
-    <header class="fixed w-full top-0 z-50 card-bg">
+    <!-- Navigation -->
+    <nav class="relative z-10 fixed w-full top-0 bg-deep-blue bg-opacity-80 backdrop-blur-lg shadow-lg">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="text-2xl font-bold tracking-wider ai-gradient-text">AURA</a>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#about" class="hover:text-red-500 transition-colors">About Me</a>
-                <a href="#services" class="hover:text-red-500 transition-colors">Services</a>
-                <a href="#aura-framework" class="hover:text-red-500 transition-colors">AURA Framework</a>
-                <a href="#tech-stack" class="hover:text-red-500 transition-colors">Tech Stack</a>
-                <a href="#projects" class="hover:text-red-500 transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-red-500 transition-colors">Contact</a>
-            </nav>
-            <div class="flex items-center">
-                <button id="theme-switcher" class="bg-gray-800 p-2 rounded-full hover:bg-gray-700 transition-colors mr-4">
-                    <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="text-2xl font-bold tracking-wider ai-gradient-text">
+                AURA
+            </div>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-text-light hover:text-accent-orange transition-colors text-lg">About</a>
+                <a href="#services" class="text-text-light hover:text-accent-orange transition-colors text-lg">Services</a>
+                <a href="#projects" class="text-text-light hover:text-accent-orange transition-colors text-lg">Projects</a>
+                <a href="#contact" class="text-text-light hover:text-accent-orange transition-colors text-lg">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleTheme()" class="bg-dark-gray p-2 rounded-full hover:bg-gray-700 transition-colors">
+                    <svg class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                 </button>
-                <button id="chatbot-toggle" class="bg-red-600 p-2 rounded-full hover:bg-red-500 transition-colors">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 18a6 6 0 1 1 6-6c0 2-3 3-3 5.5"/><path d="M12 6.5A2.5 2.5 0 1 1 9.5 9c0 1.5 2.5 2.5 2.5 5"/><path d="m9.5 14.5 2.5 2.5 2.5-2.5"/></svg>
+                <button class="bg-accent-orange p-2 rounded-full hover:bg-accent-teal transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+                        <path d="M12 18a6 6 0 1 1 6-6c0 2-3 3-3 5.5"/>
+                        <path d="M12 6.5A2.5 2.5 0 1 1 9.5 9c0 1.5 2.5 2.5 2.5 5"/>
+                        <path d="m9.5 14.5 2.5 2.5 2.5-2.5"/>
+                    </svg>
                 </button>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <section id="home" class="min-h-screen flex items-center justify-center text-center hero-bg px-4 pt-20 relative">
-            <div class="fade-in">
-                <h1 class="text-5xl md:text-7xl font-black mb-4">Your World, Reimagined.<br/> Your Data, <span class="ai-gradient-text">Unleashed.</span></h1>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-400 mb-8">I'm James Mukoma, a GeoAI architect. I don't just build systems; I forge intelligent ecosystems within your Google environment, transforming your data from a dormant asset into a predictive, automated force for sustainable impact. Welcome to AURA Intelligence.</p>
-                <a href="#about" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg">Explore the AURA Ecosystem</a>
+    <!-- Hero Section -->
+    <main class="relative z-10 min-h-screen flex items-center justify-center text-center px-4 pt-20">
+        <div class="max-w-4xl mx-auto">
+            <!-- Main Heading -->
+            <div class="mb-8">
+                <h1 class="text-5xl md:text-7xl font-black mb-4 leading-tight">
+                    Your World, <span class="ai-gradient-text">Reimagined.</span><br />
+                    Your Data, <span class="ai-gradient-text">Unleashed.</span>
+                </h1>
             </div>
-            <div class="marquee">
-              <div class="marquee-content">
-                <span>GEOAI</span>
-                <span>AURA INTELLIGENCE</span>
-                <span>SUSTAINABLE IMPACT</span>
-                <span>AUTOMATED ECOSYSTEMS</span>
-                <span>PREDICTIVE POWERHOUSE</span>
-              </div>
-            </div>
-        </section>
 
-        <section id="about" class="py-24 bg-black px-4">
-            <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
-                    <img src="https://placehold.co/600x600/050505/DC2626/png?text=James+Mukoma" alt="James Mukoma" class="rounded-full">
-                </div>
-                <div class="fade-in" style="animation-delay: 0.2s;">
-                    <h2 class="text-4xl font-bold mb-4">The Architect Behind the <span class="ai-gradient-text">AURA</span></h2>
-                    <p class="text-gray-400 mb-4">I'm not just a consultant; I'm a digital cartographer and an AI whisperer. I navigate the complex landscapes of the Google Cloud and AI ecosystem to chart a course for your success. My work is more than just code; it's about building bridges between data and decisions, between technology and humanity. I'm passionate about crafting ethical, community-centric solutions that empower organizations like the <span class="font-bold text-white">WFP, UNHCR, and USAID</span> to not just react to challenges, but to anticipate and shape a more sustainable future. When I'm not architecting intelligent ecosystems, you can find me exploring the real world, probably trying to geolocate the best coffee.</p>
-                </div>
-            </div>
-        </section>
+            <!-- Subtitle -->
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-light-gray mb-8">
+                I'm James Mukoma, a GeoAI architect. I don't just build systems; I forge intelligent ecosystems within your Google environment, transforming your data from a dormant asset into a predictive, automated force for sustainable impact.
+            </p>
 
-        <section id="services" class="py-24 px-4">
-            <div class="container mx-auto">
-                <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-4xl font-bold mb-4">My Services: Your Vision, <span class="ai-gradient-text">Amplified by AI</span></h2>
-                    <p class="text-gray-400 mb-16">I offer a suite of services designed to transform your relationship with data. I don't just provide solutions; I deliver a strategic advantage, tailored to your unique needs.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-red-500 mb-2">AURA Ecosystem Setup</h3><p>Full implementation of the automated data ecosystem for organizations and individuals.</p></div>
-                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-yellow-500 mb-2">GeoAI Impact Analysis</h3><p>Bespoke geospatial analysis for flood risk, rangeland health, refugee integration, and more.</p></div>
-                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-green-500 mb-2">Custom AI Agent Development</h3><p>Building specialized Gemini-powered agents for tasks like legal research or smart home automation.</p></div>
-                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-blue-500 mb-2">Responsible AI & Ethics</h3><p>Guiding organizations in the ethical development and deployment of AI solutions.</p></div>
-                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-indigo-500 mb-2">AI Hackathons & Training</h3><p>Organizing Zindi-style data challenges and providing corporate training via Google Classroom.</p></div>
-                    <div class="card-bg p-8 rounded-xl"><h3 class="text-xl font-bold text-purple-500 mb-2">Smart IoT & CCTV Integration</h3><p>Connecting your physical world to your digital ecosystem for real-time alerts and monitoring.</p></div>
-                </div>
+            <!-- Call to Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <button class="btn-primary text-white font-bold py-4 px-8 rounded-full text-lg glow">
+                    🚀 Explore the AURA Ecosystem
+                </button>
+                <button class="border-2 border-accent-teal text-accent-teal hover:bg-accent-teal hover:text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300">
+                    📡 Start Your Journey
+                </button>
             </div>
-        </section>
 
-        <section id="aura-framework" class="py-24 px-4">
-            <div class="container mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-4xl font-bold mb-4">The <span class="ai-gradient-text">AURA</span> Framework</h2>
-                    <p class="text-gray-400">A visual representation of the AURA ecosystem workflow.</p>
-                </div>
-                <div class="flex justify-center">
-                    <div class="mermaid">
-                        graph TD
-                            A[Data Ingestion] --> B{Data Processing};
-                            B --> C[Data Storage];
-                            C --> D{Data Analysis};
-                            D --> E[Data Visualization];
-                            E --> F[Decision Making];
+            <!-- Feature Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+                <div class="bg-dark-gray/50 backdrop-blur-sm p-6 rounded-xl text-center border border-gray-700 hover:border-accent-orange transition-colors">
+                    <div class="bg-accent-orange/20 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-3xl">⚡</span>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">AI-Powered Automation</h3>
+                    <p class="text-light-gray">Transform your workflows with intelligent automation systems</p>
                 </div>
-            </div>
-        </section>
 
-        <section id="tech-stack" class="py-24 bg-black px-4">
-            <div class="container mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-4xl font-bold mb-4">My <span class="ai-gradient-text">Tech Stack</span></h2>
-                    <p class="text-gray-400">I use a wide range of technologies to build my solutions.</p>
+                <div class="bg-dark-gray/50 backdrop-blur-sm p-6 rounded-xl text-center border border-gray-700 hover:border-accent-teal transition-colors">
+                    <div class="bg-accent-teal/20 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-3xl">🌍</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">GeoAI Solutions</h3>
+                    <p class="text-light-gray">Leverage geospatial intelligence for environmental monitoring</p>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
-                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=GEE" alt="Google Earth Engine" class="tech-icon">
-                    </div>
-                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
-                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Google+Cloud" alt="Google Cloud" class="tech-icon">
-                    </div>
-                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
-                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Jules" alt="Jules" class="tech-icon">
-                    </div>
-                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
-                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=VS+Code" alt="VS Code" class="tech-icon">
-                    </div>
-                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
-                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Java" alt="Java" class="tech-icon">
-                    </div>
-                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
-                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Flutter" alt="Flutter" class="tech-icon">
-                    </div>
-                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
-                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Python" alt="Python" class="tech-icon">
-                    </div>
-                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
-                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Colab" alt="Colab" class="tech-icon">
-                    </div>
-                    <div class="flex justify-center items-center card-bg p-6 rounded-xl">
-                        <img src="https://placehold.co/100x100/111111/FFFFFF/png?text=Looker+Studio" alt="Looker Studio" class="tech-icon">
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="projects" class="py-24 bg-black px-4">
-            <div class="container mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-4xl font-bold mb-4">Ongoing Projects in <span class="ai-gradient-text">Garissa County</span></h2>
-                    <p class="text-gray-400">Applying the AURA ecosystem to solve critical, real-world challenges. These projects demonstrate the power of integrated GeoAI in action.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project 1 -->
-                    <a href="project-sentinel.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
-                        <img src="https://placehold.co/600x400/111111/DC2626/png?text=Flood+EWS" class="rounded-lg w-full h-40 object-cover">
-                        <h4 class="text-xl font-bold text-red-500 pt-2">Project Sentinel: Flood & Drought EWS</h4>
-                        <p class="text-gray-400 text-sm">Predictive AI using Sentinel data to create an early warning system for communities along the Tana River.</p>
-                        <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, Gemini, Cloud Functions, Google Colab</p>
-                    </a>
-                    <!-- Project 2 -->
-                    <a href="project-verdant.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
-                        <img src="https://placehold.co/600x400/111111/FBBF24/png?text=Livestock+AI" class="rounded-lg w-full h-40 object-cover">
-                        <h4 class="text-xl font-bold text-yellow-500 pt-2">Project Verdant: Rangeland & Livestock AI</h4>
-                        <p class="text-gray-400 text-sm">Mapping rangeland health and developing an AI model to identify cattle by muzzle prints for enhanced management.</p>
-                        <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, Vertex AI, Google Cloud Storage</p>
-                    </a>
-                    <!-- Project 3 -->
-                    <a href="project-terraform.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
-                        <img src="https://placehold.co/600x400/111111/4ADE80/png?text=Invasive+Species" class="rounded-lg w-full h-40 object-cover">
-                        <h4 class="text-xl font-bold text-green-500 pt-2">Project TerraForm: Invasive Species AI</h4>
-                        <p class="text-gray-400 text-sm">A GeoAI system to detect and monitor the invasive Mathenge plant and analyze its impact on water aquifers.</p>
-                        <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, BigQuery, Looker Studio</p>
-                    </a>
-                    <!-- Project 4 -->
-                    <a href="project-harvest.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
-                        <img src="https://placehold.co/600x400/111111/3B82F6/png?text=Crop+Yield+AI" class="rounded-lg w-full h-40 object-cover">
-                        <h4 class="text-xl font-bold text-blue-500 pt-2">Project Harvest: AI for Soil & Crop Yield</h4>
-                        <p class="text-gray-400 text-sm">An attention-based CNN model that predicts soil nutrient gaps and crop productivity for farmers.</p>
-                        <p class="text-xs text-gray-500"><strong>Tools:</strong> TensorFlow, Vertex AI, Colab</p>
-                    </a>
-                    <!-- Project 5 -->
-                    <a href="project-shirika.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
-                        <img src="https://placehold.co/600x400/111111/8B5CF6/png?text=Refugee+Integration" class="rounded-lg w-full h-40 object-cover">
-                        <h4 class="text-xl font-bold text-indigo-500 pt-2">Project Shirika: Refugee Integration AI</h4>
-                        <p class="text-gray-400 text-sm">Analyzing the Shirika plan with GeoAI to model resource allocation and social integration patterns for refugees.</p>
-                        <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, BigQuery, Gemini, Looker Studio</p>
-                    </a>
-                    <!-- Project 6 -->
-                    <a href="project-atlas.html" class="card-bg p-6 rounded-lg space-y-3 block hover:bg-gray-800 transition-colors">
-                        <img src="https://placehold.co/600x400/111111/EC4899/png?text=Living+Atlas" class="rounded-lg w-full h-40 object-cover">
-                        <h4 class="text-xl font-bold text-purple-500 pt-2">Project Atlas: Garissa Living Atlas</h4>
-                        <p class="text-gray-400 text-sm">Mapping Garissa County's living atlas layers to monitor rangeland degradation and ecosystem health over time.</p>
-                        <p class="text-xs text-gray-500"><strong>Tools:</strong> GEE, Google Workspace, Looker Studio</p>
-                    </a>
+                <div class="bg-dark-gray/50 backdrop-blur-sm p-6 rounded-xl text-center border border-gray-700 hover:border-blue-400 transition-colors">
+                    <div class="bg-blue-500/20 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-3xl">🧠</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Intelligent Ecosystems</h3>
+                    <p class="text-light-gray">Build comprehensive AI ecosystems within your Google environment</p>
                 </div>
             </div>
-        </section>
-
-        <section id="contact" class="py-24 text-center px-4">
-             <div class="container mx-auto max-w-3xl">
-                <h2 class="text-4xl font-bold mb-4">Let's Build Your <span class="ai-gradient-text">Intelligent Future</span></h2>
-                <p class="text-gray-400 mb-8">Whether you're a development partner needing to scale impact, a company looking to automate, or an individual wanting to simplify life, I can architect an AURA ecosystem for you.</p>
-                <div class="flex justify-center gap-4">
-                    <a href="mailto:jmsmuigai@gmail.com" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-lg">Email Me: jmsmuigai@gmail.com</a>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <footer class="border-t border-gray-800">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
-             <div class="flex justify-center gap-6 mb-4">
-                <a href="https://www.linkedin.com/in/james-mukoma-86534438/" target="_blank" class="hover:text-white">LinkedIn</a>
-                <a href="https://github.com/jmsmuigai" target="_blank" class="hover:text-white">GitHub</a>
-             </div>
-            <p>&copy; 2025 AURA Intelligence by James Mukoma. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-gray-800 py-8 bg-deep-blue">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center gap-6 mb-4">
+                <a href="mailto:jmsmuigai@gmail.com" class="text-light-gray hover:text-accent-orange transition-colors">
+                    📧 Email
+                </a>
+                <a href="https://github.com/jmsmuigai" target="_blank" class="text-light-gray hover:text-accent-orange transition-colors">
+                    💻 GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/james-mukoma-86534438/" target="_blank" class="text-light-gray hover:text-accent-orange transition-colors">
+                    💼 LinkedIn
+                </a>
+            </div>
+            <p class="text-light-gray">
+                &copy; 2024 AURA Intelligence by James Mukoma. All rights reserved.
+            </p>
         </div>
     </footer>
 
-    <!-- Chatbot Container -->
-    <div id="chatbot-container" class="fixed bottom-5 right-5 z-50 w-full max-w-md hidden">
-        <div class="card-bg rounded-xl shadow-2xl">
-            <div class="p-4 border-b border-gray-700 flex justify-between items-center"><h3 class="text-lg font-bold ai-gradient-text">AURA Assistant</h3><button id="close-chatbot" class="text-gray-400 hover:text-white">&times;</button></div>
-            <div id="chatbot-body" class="p-4 h-96 overflow-y-auto">
-                <div class="text-gray-400 text-sm p-3 rounded-lg bg-gray-800 w-fit">Hello! I am the AURA Assistant, powered by Gemini. Ask me about James's GeoAI services. (Habari! Mimi ni AURA Assistant).</div>
-            </div>
-            <div class="p-4 border-t border-gray-700">
-                <div class="flex gap-2"><input type="text" id="chatbot-input" class="flex-grow bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Ask me anything..."><button id="chatbot-send" class="btn-primary text-white font-bold px-4 py-2 rounded-lg">Send</button></div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="scripts.js"></script>
+    <!-- JavaScript for interactivity -->
     <script>
-      mermaid.initialize({ startOnLoad: true });
+        // Theme toggle functionality
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            // Simple theme toggle - you can enhance this later
+        }
+
+        // Add some interactive particle effects
+        document.addEventListener('mousemove', function(e) {
+            const particles = document.querySelectorAll('.particle');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            particles.forEach((particle, index) => {
+                const speed = (index + 1) * 0.02;
+                const xOffset = (x - 0.5) * speed * 100;
+                const yOffset = (y - 0.5) * speed * 100;
+                
+                particle.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add a fun easter egg
+        let clickCount = 0;
+        document.addEventListener('click', function() {
+            clickCount++;
+            if (clickCount === 7) {
+                alert('🎉 Karibu AURA Intelligence! James loves attention to detail! (Welcome to AURA Intelligence!)');
+                clickCount = 0;
+            }
+        });
+
+        // Console message for developers
+        console.log('🌟 AURA Intelligence Portfolio - Built with passion by James Mukoma');
+        console.log('🚀 Ready to transform your data into intelligent ecosystems!');
     </script>
 </body>
 </html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - AURA Intelligence | Page Not Found</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-blue': '#0A192F',
+                        'accent-orange': '#FF6B00',
+                        'accent-teal': '#00F5D4',
+                        'light-gray': '#A0AEC0',
+                    },
+                    animation: {
+                        'gradient-flow': 'gradient-flow 10s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'gradient-flow': {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .ai-gradient-text {
+            background: linear-gradient(90deg, #FF6B00, #00F5D4, #FF6B00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-flow 10s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, #FF6B00, #00F5D4);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .particle:nth-child(1) { width: 10px; height: 10px; top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 15px; height: 15px; top: 60%; left: 80%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 8px; height: 8px; top: 80%; left: 20%; animation-delay: 4s; }
+    </style>
+</head>
+<body class="bg-deep-blue text-text-light min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 z-0">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        
+        <div class="absolute inset-0 bg-gradient-to-br from-deep-blue to-gray-900"></div>
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-accent-orange/10 rounded-full blur-3xl animate-pulse"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <!-- AURA Logo -->
+        <div class="mb-8">
+            <h1 class="text-6xl md:text-8xl font-black ai-gradient-text mb-4">
+                AURA
+            </h1>
+            <p class="text-xl text-light-gray font-light">Intelligence</p>
+        </div>
+
+        <!-- 404 Content -->
+        <div class="mb-12">
+            <div class="text-9xl md:text-[12rem] font-black text-accent-orange mb-6 animate-pulse">
+                404
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">
+                Lost in the Digital Void?
+            </h2>
+            <p class="text-lg md:text-xl text-light-gray mb-8 max-w-2xl mx-auto">
+                The page you're seeking has ventured into uncharted territory. 
+                But don't worry – even the best AI needs a map sometimes!
+            </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a href="/" 
+               class="bg-accent-orange hover:bg-accent-teal text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 inline-flex items-center justify-center">
+                🚀 Return to AURA Intelligence
+            </a>
+            <a href="/#contact" 
+               class="border-2 border-accent-teal text-accent-teal hover:bg-accent-teal hover:text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 inline-flex items-center justify-center">
+                📡 Contact James
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center">
+            <p class="text-light-gray text-sm">
+                &copy; 2024 AURA Intelligence by James Mukoma | 
+                <a href="https://github.com/jmsmuigai" class="text-accent-orange hover:text-accent-teal transition-colors">GitHub</a> | 
+                <a href="https://www.linkedin.com/in/james-mukoma-86534438/" class="text-accent-orange hover:text-accent-teal transition-colors">LinkedIn</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive particle effects
+        document.addEventListener('mousemove', function(e) {
+            const particles = document.querySelectorAll('.particle');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            particles.forEach((particle, index) => {
+                const speed = (index + 1) * 0.02;
+                const xOffset = (x - 0.5) * speed * 100;
+                const yOffset = (y - 0.5) * speed * 100;
+                
+                particle.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+
+        // Easter egg
+        let clickCount = 0;
+        document.addEventListener('click', function() {
+            clickCount++;
+            if (clickCount === 5) {
+                alert('🎉 Karibu AURA Intelligence! (Welcome to AURA Intelligence!)');
+                clickCount = 0;
+            }
+        });
+    </script>
+</body>
+</html>

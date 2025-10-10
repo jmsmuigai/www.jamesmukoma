@@ -1,175 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>AURA Intelligence - James Mukoma</title>
-    <!-- DEPLOYMENT TIMESTAMP: $(date) -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0A192F 0%, #111111 50%, #0A192F 100%);
-            color: #E2E8F0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            z-index: 10;
-        }
-        .logo {
-            font-size: 4em;
-            font-weight: 900;
-            margin-bottom: 0.5em;
-            background: linear-gradient(90deg, #FF6B00, #00F5D4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            animation: gradient-flow 3s ease infinite;
-            background-size: 200% 200%;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 1em;
-            color: #F8FAFC;
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #FF6B00, #00F5D4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            animation: gradient-flow 3s ease infinite;
-            background-size: 200% 200%;
-        }
-        p {
-            font-size: 1.3em;
-            line-height: 1.6;
-            margin-bottom: 2em;
-            color: #A0AEC0;
-        }
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            margin: 10px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-        .btn-primary {
-            background: linear-gradient(45deg, #00F5D4, #FF6B00);
-            color: #0A192F;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 245, 212, 0.5);
-        }
-        .btn-secondary {
-            background-color: transparent;
-            color: #E2E8F0;
-            border: 2px solid #FF6B00;
-        }
-        .btn-secondary:hover {
-            background-color: #FF6B00;
-            color: #0A192F;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.5);
-        }
-        .success-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(90deg, #00F5D4, #FF6B00);
-            color: #0A192F;
-            text-align: center;
-            padding: 15px;
-            font-weight: bold;
-            font-size: 1.2em;
-            z-index: 1000;
-            animation: slideDown 0.5s ease-out;
-        }
-        @keyframes gradient-flow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-        .status {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0, 245, 212, 0.1);
-            border: 1px solid #00F5D4;
-            border-radius: 10px;
-            padding: 10px 15px;
-            font-size: 0.9em;
-            color: #00F5D4;
-            z-index: 10;
-        }
-    </style>
-</head>
-<body>
-    <div class="success-banner">
-        🎉 AURA INTELLIGENCE PORTFOLIO - SUCCESSFULLY DEPLOYED! 🚀
-    </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/aura-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AURA Intelligence - Global AI Solutions Platform by James Mukoma. Transform your organization with cutting-edge AI, GeoAI, and automation technologies." />
+    <meta name="keywords" content="AI, GeoAI, Google Cloud, automation, environmental monitoring, machine learning, James Mukoma, AURA Intelligence" />
+    <meta name="author" content="James Mukoma" />
+    <meta name="robots" content="index, follow" />
     
-    <div class="container">
-        <div class="logo">AURA</div>
-        <h1>Your World, Reimagined.<br>Your Data, <span class="gradient-text">Unleashed.</span></h1>
-        <p>I'm James Mukoma, a GeoAI architect. I don't just build systems; I forge intelligent ecosystems within your Google environment, transforming your data from a dormant asset into a predictive, automated force for sustainable impact. Welcome to AURA Intelligence.</p>
-        
-        <button class="btn btn-primary" onclick="exploreAURA()">🚀 Explore the AURA Ecosystem</button>
-        <button class="btn btn-secondary" onclick="contactJames()">📧 Contact James</button>
-    </div>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jmsmuigai.github.io/www.jamesmukoma/" />
+    <meta property="og:title" content="AURA Intelligence - Global AI Solutions Platform" />
+    <meta property="og:description" content="Transform your organization with cutting-edge AI solutions. Global GeoAI platform for environmental monitoring and intelligent automation." />
+    <meta property="og:image" content="https://jmsmuigai.github.io/www.jamesmukoma/aura-preview.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://jmsmuigai.github.io/www.jamesmukoma/" />
+    <meta property="twitter:title" content="AURA Intelligence - Global AI Solutions Platform" />
+    <meta property="twitter:description" content="Transform your organization with cutting-edge AI solutions. Global GeoAI platform for environmental monitoring and intelligent automation." />
+    <meta property="twitter:image" content="https://jmsmuigai.github.io/www.jamesmukoma/aura-preview.jpg" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0A192F" />
+    <meta name="msapplication-TileColor" content="#0A192F" />
     
-    <div class="status" id="status">
-        ✅ AURA Intelligence - System Online
-    </div>
-
-    <script>
-        function exploreAURA() {
-            alert('🚀 Welcome to AURA Intelligence!\n\nGeoAI • Automation • Innovation\n\nReady to transform your data into intelligent insights?');
-        }
-
-        function contactJames() {
-            window.location.href = 'mailto:jmsmuigai@gmail.com?subject=AURA Intelligence Inquiry';
-        }
-
-        // Status updates
-        const status = document.getElementById('status');
-        const messages = [
-            '✅ AURA Intelligence - System Online',
-            '🌍 GeoAI Processing Active',
-            '🤖 AI Models Initialized',
-            '📊 Data Streams Connected',
-            '🚀 Ready for Innovation'
-        ];
-        
-        let messageIndex = 0;
-        setInterval(() => {
-            status.textContent = messages[messageIndex];
-            messageIndex = (messageIndex + 1) % messages.length;
-        }, 3000);
-
-        // Console success message
-        console.log('%c🎉 AURA INTELLIGENCE DEPLOYMENT SUCCESSFUL!', 'color: #00F5D4; font-size: 24px; font-weight: bold;');
-        console.log('%cYour portfolio is now live and working perfectly!', 'color: #FF6B00; font-size: 16px;');
-    </script>
-</body>
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <title>AURA Intelligence - Global AI Solutions Platform</title>
+    <script type="module" crossorigin src="/assets/index-Cuw2lR1t.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-BStAX1aO.js">
+    <link rel="modulepreload" crossorigin href="/assets/animations-DLL7zg04.js">
+    <link rel="modulepreload" crossorigin href="/assets/ui-DrtTjail.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DDEoPTvu.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

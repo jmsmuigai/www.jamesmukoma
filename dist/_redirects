@@ -1,5 +1,2 @@
-# SPA fallback
+# SPA fallback for GitHub Pages
 /*    /index.html   200
-
-# API proxy (if needed)
-/api/*  https://aura-api-6r7v4l4qsq-uc.a.run.app/api/:splat  200

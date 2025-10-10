@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title>AURA Intelligence - James Mukoma</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA Intelligence | James Mukoma - GeoAI & AI Ecosystems</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #0A192F 0%, #111111 50%, #0A192F 100%);
             color: #E2E8F0;
             min-height: 100vh;
@@ -20,21 +15,17 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .container {
             text-align: center;
-            z-index: 10;
             padding: 20px;
-            max-width: 900px;
         }
-        
+        .container {
+            max-width: 800px;
+            z-index: 10;
+        }
         .logo {
-            font-size: 5em;
+            font-size: 4em;
             font-weight: 900;
-            margin-bottom: 0.2em;
+            margin-bottom: 0.5em;
             background: linear-gradient(90deg, #FF6B00, #00F5D4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -43,14 +34,11 @@
             animation: gradient-flow 3s ease infinite;
             background-size: 200% 200%;
         }
-        
         h1 {
             font-size: 2.5em;
-            margin-bottom: 0.5em;
+            margin-bottom: 1em;
             color: #F8FAFC;
-            line-height: 1.2;
         }
-        
         .gradient-text {
             background: linear-gradient(90deg, #FF6B00, #00F5D4);
             -webkit-background-clip: text;
@@ -60,20 +48,15 @@
             animation: gradient-flow 3s ease infinite;
             background-size: 200% 200%;
         }
-        
         p {
-            font-size: 1.2em;
-            line-height: 1.7;
-            margin-bottom: 30px;
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin-bottom: 2em;
             color: #A0AEC0;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
-        
         .btn {
             display: inline-block;
-            padding: 15px 35px;
+            padding: 15px 30px;
             margin: 10px;
             border-radius: 30px;
             text-decoration: none;
@@ -84,113 +67,48 @@
             border: none;
             cursor: pointer;
         }
-        
         .btn-primary {
             background: linear-gradient(45deg, #00F5D4, #FF6B00);
             color: #0A192F;
         }
-        
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 245, 212, 0.5);
         }
-        
         .btn-secondary {
             background-color: transparent;
             color: #E2E8F0;
             border: 2px solid #FF6B00;
         }
-        
         .btn-secondary:hover {
             background-color: #FF6B00;
             color: #0A192F;
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 107, 0, 0.5);
         }
-        
-        .particles {
-            position: absolute;
+        .success-banner {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
+            right: 0;
+            background: linear-gradient(90deg, #00F5D4, #FF6B00);
+            color: #0A192F;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.2em;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
         }
-        
-        .particle {
-            position: absolute;
-            background-color: rgba(255, 107, 0, 0.7);
-            border-radius: 50%;
-            opacity: 0;
-            animation: fadeInOut 5s infinite ease-in-out;
-        }
-        
         @keyframes gradient-flow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0); }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
-        
-        .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: rgba(17, 17, 17, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-            transition: background-color 0.3s ease;
-            border: none;
-            color: #E2E8F0;
-            font-size: 1.2em;
-        }
-        
-        .theme-toggle:hover {
-            background-color: rgba(17, 17, 17, 0.8);
-        }
-        
-        .light-mode {
-            background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 50%, #F8FAFC 100%);
-            color: #2D3748;
-        }
-        
-        .light-mode .logo, .light-mode .gradient-text {
-            background: linear-gradient(90deg, #DC2626, #FBBF24);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .light-mode .btn-primary {
-            background: linear-gradient(45deg, #FBBF24, #DC2626);
-            color: #F8FAFC;
-        }
-        
-        .light-mode .btn-secondary {
-            color: #2D3748;
-            border-color: #DC2626;
-        }
-        
-        .light-mode .btn-secondary:hover {
-            background-color: #DC2626;
-            color: #F8FAFC;
-        }
-        
-        .light-mode .theme-toggle {
-            background-color: rgba(255, 255, 255, 0.6);
-            color: #2D3748;
-        }
-        
         .status {
             position: fixed;
             bottom: 20px;
@@ -203,34 +121,12 @@
             color: #00F5D4;
             z-index: 10;
         }
-        
-        .success-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(90deg, #00F5D4, #FF6B00);
-            color: #0A192F;
-            text-align: center;
-            padding: 10px;
-            font-weight: bold;
-            z-index: 1000;
-            animation: slideDown 0.5s ease-out;
-        }
-        
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
     <div class="success-banner">
         🎉 AURA INTELLIGENCE PORTFOLIO - SUCCESSFULLY DEPLOYED! 🚀
     </div>
-    
-    <div class="particles" id="particles-container"></div>
-    <button class="theme-toggle" id="theme-toggle">🌙</button>
     
     <div class="container">
         <div class="logo">AURA</div>
@@ -246,70 +142,6 @@
     </div>
 
     <script>
-        // Particle animation
-        const particlesContainer = document.getElementById('particles-container');
-        let mouseX = 0;
-        let mouseY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            const size = Math.random() * 8 + 3;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-
-            const startX = Math.random() * window.innerWidth;
-            const startY = Math.random() * window.innerHeight;
-
-            particle.style.left = `${startX}px`;
-            particle.style.top = `${startY}px`;
-
-            particlesContainer.appendChild(particle);
-
-            const targetX = mouseX + (Math.random() - 0.5) * 100;
-            const targetY = mouseY + (Math.random() - 0.5) * 100;
-
-            particle.animate([
-                { transform: `translate(${startX - mouseX}px, ${startY - mouseY}px) scale(0)`, opacity: 0 },
-                { transform: `translate(${targetX - mouseX}px, ${targetY - mouseY}px) scale(1)`, opacity: 1, offset: 0.5 },
-                { transform: `translate(${targetX - mouseX + (Math.random() - 0.5) * 50}px, ${targetY - mouseY + (Math.random() - 0.5) * 50}px) scale(0)`, opacity: 0 }
-            ], {
-                duration: Math.random() * 4000 + 3000,
-                easing: 'ease-out',
-                iterations: 1,
-                fill: 'forwards'
-            });
-
-            setTimeout(() => {
-                particle.remove();
-            }, 7000);
-        }
-        setInterval(createParticle, 150);
-
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            const isLightMode = body.classList.contains('light-mode');
-            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-            themeToggle.textContent = isLightMode ? '☀️' : '🌙';
-        });
-
-        // Apply saved theme on load
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            body.classList.add('light-mode');
-            themeToggle.textContent = '☀️';
-        }
-
-        // Button functions
         function exploreAURA() {
             alert('🚀 Welcome to AURA Intelligence!\n\nGeoAI • Automation • Innovation\n\nReady to transform your data into intelligent insights?');
         }
@@ -334,24 +166,9 @@
             messageIndex = (messageIndex + 1) % messages.length;
         }, 3000);
 
-        // Easter egg
-        let clickCount = 0;
-        document.addEventListener('click', () => {
-            clickCount++;
-            if (clickCount === 7) {
-                alert('Karibu AURA Intelligence! 🎉\n\nTunatumia akili bandia kuboresha maisha.\n(Welcome to AURA Intelligence! We use AI to improve lives.)');
-                clickCount = 0;
-            }
-        });
-
-        // Console welcome message
-        console.log('%c🚀 AURA Intelligence - System Online', 'color: #00F5D4; font-size: 20px; font-weight: bold;');
-        console.log('%cWelcome to the future of GeoAI and intelligent automation!', 'color: #FF6B00; font-size: 14px;');
-        console.log('%cBuilt with ❤️ by James Mukoma', 'color: #E2E8F0; font-size: 12px;');
-        
-        // Success message
-        console.log('%c🎉 DEPLOYMENT SUCCESSFUL!', 'color: #00F5D4; font-size: 24px; font-weight: bold;');
-        console.log('%cAURA Intelligence Portfolio is now live!', 'color: #FF6B00; font-size: 16px;');
+        // Console success message
+        console.log('%c🎉 AURA INTELLIGENCE DEPLOYMENT SUCCESSFUL!', 'color: #00F5D4; font-size: 24px; font-weight: bold;');
+        console.log('%cYour portfolio is now live and working perfectly!', 'color: #FF6B00; font-size: 16px;');
     </script>
 </body>
 </html>

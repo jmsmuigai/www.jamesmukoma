@@ -1,0 +1,332 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom CSS Variables for Neo-African Futurism Theme */
+:root {
+  --aura-dark: #0A192F;
+  --aura-darker: #000000;
+  --aura-gray: #1E293B;
+  --aura-light: #F8FAFC;
+  --aura-accent: #FF6B00;
+  --aura-teal: #00F5D4;
+  --aura-blue: #0EA5E9;
+  --aura-purple: #8B5CF6;
+  --aura-green: #10B981;
+  --aura-red: #EF4444;
+  --aura-yellow: #F59E0B;
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--aura-dark);
+  color: var(--aura-light);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--aura-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--aura-accent), var(--aura-teal));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--aura-teal), var(--aura-blue));
+}
+
+/* Selection Styles */
+::selection {
+  background: var(--aura-accent);
+  color: var(--aura-light);
+}
+
+::-moz-selection {
+  background: var(--aura-accent);
+  color: var(--aura-light);
+}
+
+/* Focus Styles */
+:focus {
+  outline: 2px solid var(--aura-teal);
+  outline-offset: 2px;
+}
+
+/* AURA Gradient Text */
+.aura-gradient-text {
+  background: linear-gradient(135deg, var(--aura-accent) 0%, var(--aura-teal) 50%, var(--aura-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-flow 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Neo-African Geometric Patterns */
+.neo-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.neo-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(45deg, transparent 25%, rgba(255, 107, 0, 0.1) 25%),
+    linear-gradient(-45deg, transparent 25%, rgba(0, 245, 212, 0.1) 25%),
+    linear-gradient(45deg, rgba(139, 92, 246, 0.1) 75%, transparent 75%),
+    linear-gradient(-45deg, rgba(16, 185, 129, 0.1) 75%, transparent 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Glass Morphism Effect */
+.glass {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-strong {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 107, 0, 0.2);
+}
+
+/* AURA Glow Effects */
+.aura-glow {
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.aura-glow:hover {
+  box-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
+}
+
+.neo-glow {
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.neo-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 245, 212, 0.5);
+}
+
+/* Button Styles */
+.btn-aura {
+  background: linear-gradient(135deg, var(--aura-accent), var(--aura-red));
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-aura::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-aura:hover::before {
+  left: 100%;
+}
+
+.btn-aura:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 107, 0, 0.4);
+}
+
+.btn-aura:active {
+  transform: translateY(0);
+}
+
+/* Card Styles */
+.card-aura {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.card-aura:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 107, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Loading Animation */
+.aura-loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 107, 0, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--aura-accent);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Particle Background */
+.particles-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(0, 245, 212, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+}
+
+/* Typography */
+.text-shadow-aura {
+  text-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+}
+
+.text-shadow-neo {
+  text-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .card-aura:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Dark Mode Overrides */
+.dark {
+  color-scheme: dark;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .aura-gradient-text {
+    background: none;
+    -webkit-text-fill-color: var(--aura-accent);
+    color: var(--aura-accent);
+  }
+  
+  .glass {
+    background: var(--aura-gray);
+    border: 2px solid var(--aura-light);
+  }
+}
+
+/* Custom Utilities */
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Animation Delays */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}

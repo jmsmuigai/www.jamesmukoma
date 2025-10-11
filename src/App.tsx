@@ -26,7 +26,7 @@ import { ProjectCowRecognitionPage } from './pages/projects/ProjectCowRecognitio
 function App() {
   return (
     <ThemeProvider>
-      <Router>
+      <Router basename="/www.jamesmukoma">
         <div className="min-h-screen aura-bg">
           <ParticleBackground />
           <Navbar />

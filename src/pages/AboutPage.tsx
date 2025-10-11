@@ -157,7 +157,7 @@ export const AboutPage: React.FC = () => {
                     <div className="relative group">
                       <div className="w-20 h-20 rounded-2xl overflow-hidden ring-4 ring-accent-teal ring-opacity-30 shadow-lg transition-all duration-300 group-hover:ring-opacity-60 group-hover:shadow-xl">
                         <ProfileWatermark 
-                          src="/profile-photo.jpg" 
+                          src="/www.jamesmukoma/profile-photo.jpg" 
                           alt="James Mukoma - Founder & Lead AI Architect"
                           className="w-full h-full transition-all duration-300 group-hover:scale-105"
                           loading="lazy"

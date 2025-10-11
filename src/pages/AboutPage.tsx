@@ -14,6 +14,7 @@ import {
   Database,
   Cloud
 } from 'lucide-react';
+import { ProfileWatermark } from '../components/ui/WatermarkedImage';
 
 export const AboutPage: React.FC = () => {
   const timeline = [
@@ -152,13 +153,52 @@ export const AboutPage: React.FC = () => {
             >
               <div className="card p-8">
                 <div className="space-y-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-16 h-16 bg-gradient-to-r from-accent-teal to-accent-orange rounded-2xl flex items-center justify-center">
-                      <Brain className="w-8 h-8 text-deep-blue" />
+                  <div className="flex items-center space-x-4">
+                    <div className="relative group">
+                      <div className="w-20 h-20 rounded-2xl overflow-hidden ring-4 ring-accent-teal ring-opacity-30 shadow-lg transition-all duration-300 group-hover:ring-opacity-60 group-hover:shadow-xl">
+                        <ProfileWatermark 
+                          src="/profile-photo.jpg" 
+                          alt="James Mukoma - Founder & Lead AI Architect"
+                          className="w-full h-full transition-all duration-300 group-hover:scale-105"
+                          loading="lazy"
+                          showWatermark={false}
+                          onLoad={(e) => {
+                            // Hide loading state when image loads
+                            const target = e.target as HTMLImageElement;
+                            target.style.opacity = '1';
+                          }}
+                          onError={(e) => {
+                            // Fallback to gradient background with icon if image fails to load
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const fallback = target.parentElement?.querySelector('.fallback-icon') as HTMLElement;
+                            if (fallback) fallback.style.display = 'flex';
+                          }}
+                          style={{ opacity: 0 }}
+                        />
+                        {/* Loading skeleton */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-accent-teal to-accent-orange animate-pulse rounded-2xl"></div>
+                        {/* Fallback icon */}
+                        <div className="fallback-icon hidden w-full h-full bg-gradient-to-r from-accent-teal to-accent-orange rounded-2xl items-center justify-center">
+                          <Brain className="w-8 h-8 text-deep-blue" />
+                        </div>
+                      </div>
+                      {/* Enhanced glow effect */}
+                      <div className="absolute -inset-2 bg-gradient-to-r from-accent-teal to-accent-orange rounded-2xl opacity-0 group-hover:opacity-30 blur-md transition-all duration-300 -z-10"></div>
+                      {/* Status indicator */}
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-deep-blue flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-text-light">James Mukoma</h3>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-text-light group-hover:text-accent-teal transition-colors duration-300">James Mukoma</h3>
                       <p className="text-text-gray">Founder & Lead AI Architect</p>
+                      <div className="flex items-center mt-1 space-x-2">
+                        <div className="flex items-center text-xs text-accent-teal">
+                          <div className="w-2 h-2 bg-accent-teal rounded-full mr-1 animate-pulse"></div>
+                          Available for projects
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <p className="text-text-gray leading-relaxed">

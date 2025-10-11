@@ -1,274 +1,206 @@
-# 🚀 AURA Intelligence Portfolio - Deployment Guide
+# AURA Intelligence - Deployment Guide
 
-This guide will walk you through deploying your state-of-the-art AI-powered portfolio to production.
+## 🚀 Production Deployment Checklist
 
-## 📋 Prerequisites
+### 1. SEO Optimization ✅
+- [x] Enhanced meta tags with comprehensive keywords
+- [x] Structured data (JSON-LD) for rich snippets
+- [x] Canonical URLs configured
+- [x] Sitemap.xml created and optimized
+- [x] Robots.txt configured for search engines
+- [x] Open Graph and Twitter Card meta tags
+- [x] Geographic metadata for local SEO
 
-Before deploying, ensure you have:
+### 2. Performance Optimization ✅
+- [x] Build configuration optimized (minification, chunking)
+- [x] DNS prefetch for external resources
+- [x] Font optimization with preconnect
+- [x] Removed sourcemaps for production
+- [x] Manual chunk splitting for better caching
 
-- ✅ GitHub account with repository access
-- ✅ Google Cloud Platform account (for backend)
-- ✅ API keys for external services
-- ✅ Domain name (optional but recommended)
+### 3. Routing Issues Fixed ✅
+- [x] Removed static 404.html file causing flash
+- [x] Updated _redirects for proper SPA routing
+- [x] React Router handles 404s internally
 
-## 🔑 Required API Keys
+## 🌐 Hosting Options
 
-### 1. Google Gemini API Key
-- Visit [Google AI Studio](https://aistudio.google.com/)
-- Create a new project
-- Generate an API key
-- Copy the key for later use
-
-### 2. Mapbox Access Token
-- Sign up at [Mapbox](https://www.mapbox.com/)
-- Go to your account page
-- Create an access token
-- Copy the token for later use
-
-### 3. Google Cloud Platform (Optional)
-- Create a GCP project
-- Enable Cloud Run API
-- Create a service account
-- Download the service account key
-
-### 4. M-Pesa API (Optional)
-- Register at [Safaricom Developer Portal](https://developer.safaricom.co.ke/)
-- Create an app and get credentials
-
-## 🚀 Deployment Steps
-
-### Step 1: Repository Setup
-
-1. **Create GitHub Repository**
-   ```bash
-   # Initialize git repository
-   git init
-   git add .
-   git commit -m "Initial commit: AURA Intelligence Portfolio"
-   
-   # Add remote origin
-   git remote add origin https://github.com/jmsmuigai/aura-portfolio.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-2. **Enable GitHub Pages**
-   - Go to repository Settings
-   - Scroll to "Pages" section
-   - Select "GitHub Actions" as source
-   - Save settings
-
-### Step 2: Configure GitHub Secrets
-
-Go to your repository Settings → Secrets and variables → Actions, and add:
-
-```
-GEMINI_API_KEY=your_gemini_api_key_here
-MAPBOX_TOKEN=your_mapbox_access_token_here
-GA_TRACKING_ID=G-XXXXXXXXXX (optional)
-SECRET_KEY=your-secret-key-here
-```
-
-### Step 3: Deploy Frontend (Automatic)
-
-The frontend will automatically deploy to GitHub Pages when you push to main branch:
-
+### Option 1: Netlify (Recommended)
 ```bash
-# Make any changes and push
-git add .
-git commit -m "Deploy frontend"
-git push origin main
-```
-
-**Frontend URL**: `https://jmsmuigai.github.io/aura-portfolio`
-
-### Step 4: Deploy Backend (Optional)
-
-For the backend API, you have two options:
-
-#### Option A: Deploy to Google Cloud Run (Recommended)
-
-1. **Set up Google Cloud Project**
-   ```bash
-   # Install gcloud CLI
-   # Configure authentication
-   gcloud auth login
-   gcloud config set project YOUR_PROJECT_ID
-   ```
-
-2. **Add GCP secrets to GitHub**
-   ```
-   GCP_PROJECT_ID=your-gcp-project-id
-   GCP_SA_KEY=your-service-account-key-json
-   ```
-
-3. **Deploy via GitHub Actions**
-   - Push changes to trigger deployment
-   - Monitor the Actions tab for deployment status
-
-#### Option B: Deploy to Heroku (Alternative)
-
-1. **Install Heroku CLI**
-   ```bash
-   # Create Heroku app
-   heroku create aura-api
-   
-   # Set environment variables
-   heroku config:set GEMINI_API_KEY=your_key
-   heroku config:set SECRET_KEY=your_secret
-   
-   # Deploy
-   git subtree push --prefix backend heroku main
-   ```
-
-### Step 5: Configure Custom Domain (Optional)
-
-1. **Add custom domain to GitHub Pages**
-   - Go to repository Settings → Pages
-   - Add your custom domain
-   - Update DNS records
-
-2. **Update API endpoints**
-   - Update `VITE_API_BASE_URL` in environment variables
-   - Update CORS settings in backend
-
-## 🔧 Environment Configuration
-
-### Frontend Environment Variables
-
-Create a `.env` file in the root directory:
-
-```env
-VITE_API_BASE_URL=https://aura-api-6r7v4l4qsq-uc.a.run.app/api
-VITE_MAPBOX_TOKEN=your_mapbox_token
-VITE_GA_TRACKING_ID=G-XXXXXXXXXX
-VITE_APP_NAME=AURA Intelligence
-VITE_APP_VERSION=2.0.0
-```
-
-### Backend Environment Variables
-
-For production deployment, set these in your hosting platform:
-
-```env
-GEMINI_API_KEY=your_gemini_api_key
-SECRET_KEY=your_secret_key
-MPESA_CONSUMER_KEY=your_mpesa_key (optional)
-MPESA_CONSUMER_SECRET=your_mpesa_secret (optional)
-```
-
-## 🧪 Testing Deployment
-
-### 1. Frontend Testing
-```bash
-# Test locally
+# Build the project
 npm run build
-npm run preview
 
-# Check deployed site
-curl -I https://jmsmuigai.github.io/aura-portfolio
+# Deploy to Netlify
+npx netlify deploy --prod --dir=dist
 ```
 
-### 2. Backend Testing
+**Netlify Configuration:**
+- Automatic HTTPS
+- CDN distribution
+- Form handling
+- Branch-based deployments
+- Analytics included
+
+### Option 2: Vercel
 ```bash
-# Test API endpoints
-curl https://aura-api-6r7v4l4qsq-uc.a.run.app/api/health
-curl https://aura-api-6r7v4l4qsq-uc.a.run.app/api/projects
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel --prod
 ```
 
-### 3. Integration Testing
-- Test chatbot functionality
-- Verify map loading
-- Check 3D graphics performance
-- Test responsive design
+### Option 3: Custom Domain Setup
 
-## 📊 Monitoring & Analytics
-
-### 1. Google Analytics Setup
-- Create GA4 property
-- Add tracking ID to environment variables
-- Verify data collection
-
-### 2. Error Monitoring
-- Set up Sentry for error tracking
-- Monitor API performance
-- Check deployment logs
-
-### 3. Performance Monitoring
-- Use Lighthouse for performance audits
-- Monitor Core Web Vitals
-- Check API response times
-
-## 🔒 Security Checklist
-
-- ✅ HTTPS enabled
-- ✅ API keys secured
-- ✅ CORS configured
-- ✅ Rate limiting enabled
-- ✅ Input validation
-- ✅ Security headers set
-
-## 🚨 Troubleshooting
-
-### Common Issues
-
-1. **Build Failures**
-   ```bash
-   # Clear cache and reinstall
-   rm -rf node_modules package-lock.json
-   npm install
+#### For Netlify:
+1. Go to Domain settings in Netlify dashboard
+2. Add your custom domain
+3. Configure DNS records:
+   ```
+   Type: CNAME
+   Name: www
+   Value: your-site.netlify.app
+   
+   Type: A
+   Name: @
+   Value: 75.2.60.5
    ```
 
-2. **API Connection Issues**
-   - Check CORS settings
-   - Verify API endpoint URLs
-   - Check network connectivity
+#### For Vercel:
+1. Go to Project Settings > Domains
+2. Add your domain
+3. Configure DNS as instructed
 
-3. **Map Not Loading**
-   - Verify Mapbox token
-   - Check token permissions
-   - Verify quota limits
+### Option 4: Traditional Web Hosting
+1. Build the project: `npm run build`
+2. Upload `dist/` folder contents to your web server
+3. Configure your web server for SPA routing:
 
-4. **Chatbot Not Responding**
-   - Check Gemini API key
-   - Verify API quotas
-   - Check network requests
+**Apache (.htaccess):**
+```apache
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+```
 
-## 📈 Performance Optimization
+**Nginx:**
+```nginx
+location / {
+  try_files $uri $uri/ /index.html;
+}
+```
 
-### 1. Frontend Optimization
-- Enable gzip compression
-- Optimize images
-- Use CDN for static assets
-- Implement caching strategies
+## 🔧 Pre-Deployment Steps
 
-### 2. Backend Optimization
-- Enable caching
-- Optimize database queries
-- Use connection pooling
-- Implement rate limiting
+### 1. Update URLs for Production
+Update the following files to use your production domain:
 
-## 🔄 Continuous Deployment
+```typescript
+// vite.config.ts
+export default defineConfig({
+  base: '/', // Change from '/www.jamesmukoma/' to '/'
+  // ... rest of config
+})
+```
 
-The setup includes automatic deployment:
+### 2. Update Meta Tags
+Update all meta tags in `index.html` to use your production domain:
+- Open Graph URLs
+- Twitter Card URLs
+- Canonical URLs
+- Structured data URLs
 
-1. **Frontend**: Deploys on every push to main branch
-2. **Backend**: Deploys when backend files change
-3. **Testing**: Runs automated tests before deployment
-4. **Monitoring**: Continuous health checks
+### 3. Build and Test
+```bash
+# Clean install
+rm -rf node_modules package-lock.json
+npm install
 
-## 📞 Support
+# Build for production
+npm run build
 
-If you encounter issues:
+# Test locally
+npx serve dist
+```
 
-1. Check the GitHub Actions logs
-2. Review the deployment guide
-3. Contact support: jmsmuigai@gmail.com
+## 📊 SEO Monitoring
 
-## 🎉 Success!
+### Tools to Use:
+1. **Google Search Console** - Monitor indexing and search performance
+2. **Google PageSpeed Insights** - Performance monitoring
+3. **Lighthouse** - Comprehensive audits
+4. **GTmetrix** - Performance analysis
+5. **SEMrush/Ahrefs** - SEO tracking
 
-Once deployed, your AURA Intelligence portfolio will be live at:
-- **Frontend**: https://jmsmuigai.github.io/aura-portfolio
-- **Backend API**: https://aura-api-6r7v4l4qsq-uc.a.run.app
+### Key Metrics to Monitor:
+- Core Web Vitals (LCP, FID, CLS)
+- Search rankings for target keywords
+- Organic traffic growth
+- Page load speeds
+- Mobile usability scores
 
-Your state-of-the-art AI-powered portfolio is now ready to impress potential clients and showcase your GeoAI expertise!
+## 🎯 Target Keywords for SEO
+
+### Primary Keywords:
+- AI Solutions Kenya
+- GeoAI Expert
+- Machine Learning Consultant
+- Google Cloud Professional
+- Environmental Monitoring AI
+
+### Long-tail Keywords:
+- AI solutions for environmental monitoring
+- Google Cloud AI implementation Kenya
+- Machine learning for agriculture Kenya
+- GeoAI spatial analysis services
+- Automated environmental data processing
+
+## 🚀 Post-Deployment Actions
+
+1. **Submit to Search Engines:**
+   - Google Search Console
+   - Bing Webmaster Tools
+   - Yandex Webmaster
+
+2. **Create Social Media Profiles:**
+   - LinkedIn business page
+   - Twitter/X profile
+   - GitHub profile optimization
+
+3. **Local SEO:**
+   - Google My Business listing
+   - Local directory submissions
+   - Kenya tech community participation
+
+4. **Content Marketing:**
+   - Blog posts about AI/GeoAI
+   - Case studies of projects
+   - Technical tutorials
+
+## 🔒 Security Considerations
+
+- Enable HTTPS (automatic with Netlify/Vercel)
+- Implement CSP headers
+- Regular dependency updates
+- Monitor for security vulnerabilities
+
+## 📱 Mobile Optimization
+
+- Responsive design verified
+- Touch-friendly interactions
+- Fast loading on mobile networks
+- PWA capabilities (optional future enhancement)
+
+---
+
+**Ready for Production!** 🎉
+
+Your website is now optimized for:
+- ✅ Top search engine rankings
+- ✅ Fast loading speeds
+- ✅ Professional appearance
+- ✅ Mobile-first design
+- ✅ SEO best practices

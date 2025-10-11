@@ -25,7 +25,8 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: false, // Disable sourcemaps in production for better performance
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks: {
@@ -34,7 +35,11 @@ export default defineConfig({
           ui: ['lucide-react', 'clsx', 'tailwind-merge']
         }
       }
-    }
+    },
+    // Optimize chunks for better caching
+    chunkSizeWarningLimit: 1000,
+    // Enable compression
+    reportCompressedSize: true
   },
   server: {
     port: 3000,

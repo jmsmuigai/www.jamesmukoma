@@ -1,1 +1,5 @@
+# SPA routing for GitHub Pages
 /*    /index.html   200
+
+# Remove 404.html to prevent flash
+/404.html    /index.html   301

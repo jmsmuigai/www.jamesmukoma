@@ -14,6 +14,7 @@ import { ExperiencePage } from './pages/ExperiencePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { ContactPage } from './pages/ContactPage';
+import { GalleryPage } from './pages/GalleryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 // Project Pages
@@ -37,6 +38,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/experience" element={<ExperiencePage />} />
               <Route path="/services" element={<ServicesPage />} />
+              <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/contact" element={<ContactPage />} />
               

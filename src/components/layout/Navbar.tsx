@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon, Bot, Globe, Brain, Zap } from 'lucide-react';
+import { Menu, X, Sun, Moon, Bot, Globe, Brain, Zap, Camera } from 'lucide-react';
 import { useTheme } from '../providers/ThemeProvider';
 
 export const Navbar: React.FC = () => {
@@ -24,6 +24,7 @@ export const Navbar: React.FC = () => {
     { name: 'About', path: '/about', icon: Brain },
     { name: 'Experience', path: '/experience', icon: Zap },
     { name: 'Services', path: '/services', icon: Bot },
+    { name: 'Gallery', path: '/gallery', icon: Camera },
     { name: 'Dashboard', path: '/dashboard', icon: Brain },
     { name: 'Contact', path: '/contact', icon: Globe },
   ];

@@ -2,15 +2,30 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://jmsmuigai.github.io/aura-portfolio/sitemap.xml
+Sitemap: https://jmsmuigai.github.io/www.jamesmukoma/sitemap.xml
 
-# Disallow admin areas
-Disallow: /admin/
-Disallow: /api/
+# Crawl-delay
+Crawl-delay: 1
 
-# Allow important pages
+# Specific bot instructions
+User-agent: Googlebot
 Allow: /
-Allow: /about
-Allow: /experience
-Allow: /services
-Allow: /contact
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block problematic bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

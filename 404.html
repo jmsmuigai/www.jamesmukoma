@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI Adapt | Redirecting…</title>
+    <script type="text/javascript">
+      (function() {
+        var path = window.location.pathname;
+        var base = '/www.jamesmukoma';
+        if (path.indexOf(base) !== 0) {
+          window.location.replace(base + '/');
+          return;
+        }
+        var redirectPath = path.slice(base.length) || '/';
+        var search = window.location.search.replace('?', '');
+        var hash = window.location.hash;
+        var query = search ? '&q=' + encodeURIComponent(search) : '';
+        var target = base + '/index.html?p=' + encodeURIComponent(redirectPath) + query + hash;
+        window.location.replace(target);
+      })();
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background: #0A192F;
+        color: #F8FAFC;
+      }
+    </style>
+  </head>
+  <body>
+    <div>Redirecting…</div>
+  </body>
+</html>
+

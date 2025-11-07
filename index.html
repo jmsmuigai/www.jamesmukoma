@@ -141,6 +141,21 @@
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://jmsmuigai.github.io/www.jamesmukoma/" />
+
+    <!-- Routing Fallback for GitHub Pages -->
+    <script type="text/javascript">
+      (function() {
+        const params = new URLSearchParams(window.location.search);
+        const path = params.get('p');
+        if (path !== null) {
+          const query = params.get('q');
+          const decodedPath = decodeURIComponent(path);
+          const decodedQuery = query ? '?' + decodeURIComponent(query) : '';
+          const newUrl = '/www.jamesmukoma' + decodedPath + decodedQuery + window.location.hash;
+          window.history.replaceState(null, null, newUrl);
+        }
+      })();
+    </script>
     <script type="module" crossorigin src="/www.jamesmukoma/assets/index-BQi_1mCg.js"></script>
     <link rel="modulepreload" crossorigin href="/www.jamesmukoma/assets/vendor-BStAX1aO.js">
     <link rel="modulepreload" crossorigin href="/www.jamesmukoma/assets/animations-DLL7zg04.js">
